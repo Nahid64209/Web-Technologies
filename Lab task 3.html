@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration</title>
+
+    <style>
+        .error{
+            color:red;
+            font-size:12px;
+            font-weight:bold;
+            margin-left:5px;
+        }
+
+        table td{
+            padding:2px;
+        }
+
+        fieldset{
+            min-height:180px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Registration</h2>
+
+<form onsubmit="return validate(this)">
+
+<table>
+<tr>
+
+<!-- General Information -->
+<td valign="top">
+
+<fieldset>
+<legend>General Information</legend>
+
+<table>
+
+<tr>
+    <td>First Name</td>
+    <td>:</td>
+    <td>
+        <input type="text" name="fname">
+        <span id="fnameErr" class="error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td>Last Name</td>
+    <td>:</td>
+    <td>
+        <input type="text" name="lname">
+        <span id="lnameErr" class="error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td>Gender</td>
+    <td>:</td>
+    <td>
+        <input type="radio" name="gender"> Male
+        <input type="radio" name="gender"> Female
+        <span id="genderErr" class="error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td>Father's Name</td>
+    <td>:</td>
+    <td>
+        <input type="text" name="father">
+        <input type="file" name="photo">
+        <span id="fatherErr" class="error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td>Mother's Name</td>
+    <td>:</td>
+    <td>
+        <input type="text" name="mother">
+        <span id="motherErr" class="error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td>Blood Group</td>
+    <td>:</td>
+    <td>
+        <select name="blood">
+            <option>Select</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+        </select>
+        <span id="bloodErr" class="error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td>Religion</td>
+    <td>:</td>
+    <td>
+        <select name="religion">
+            <option>Select</option>
+            <option>Islam</option>
+            <option>Hinduism</option>
+            <option>Christianity</option>
+            <option>Buddhism</option>
+            <option>Others</option>
+        </select>
+        <span id="religionErr" class="error"></span>
+    </td>
+</tr>
+
+</table>
+</fieldset>
+
+</td>
+
+<!-- Contact Information -->
+<td valign="top">
+
+<fieldset>
+<legend>Contact Information</legend>
+
+<table>
+
+<tr>
+    <td>Email</td>
+    <td>:</td>
+    <td>
+        <input type="email" name="email">
+        <span id="emailErr" class="error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td>Phone/Mobile</td>
+    <td>:</td>
+    <td>
+        <input type="text" name="phone">
+        <span id="phoneErr" class="error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td>Website</td>
+    <td>:</td>
+    <td>
+        <input type="text" name="website">
+        <span id="websiteErr" class="error"></span>
+    </td>
+</tr>
+
+</table>
+
+<br>
+
+<fieldset>
+<legend>Present Address</legend>
+
+<table>
+
+<tr>
+    <td>Country</td>
+    <td>:</td>
+    <td>
+        <select name="country">
+            <option>Select Country</option>
+            <option>Bangladesh</option>
+            <option>India</option>
+        </select>
+        <span id="countryErr" class="error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td>City</td>
+    <td>:</td>
+    <td>
+        <select name="city">
+            <option>Select City</option>
+            <option>Dhaka</option>
+            <option>Rajshahi</option>
+        </select>
+        <span id="cityErr" class="error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td>Address</td>
+    <td>:</td>
+    <td>
+        <textarea name="address" rows="4" cols="23"></textarea>
+        <span id="addressErr" class="error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td>Post Code</td>
+    <td>:</td>
+    <td>
+        <input type="text" name="postcode" placeholder="Postal Code">
+        <span id="postcodeErr" class="error"></span>
+    </td>
+</tr>
+
+</table>
+
+</fieldset>
+</fieldset>
+
+</td>
+
+<!-- Account Information -->
+<td valign="top">
+
+<fieldset>
+<legend>Account Information</legend>
+
+<table>
+
+<tr>
+    <td>Username</td>
+    <td>:</td>
+    <td>
+        <input type="text" name="username">
+        <span id="usernameErr" class="error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td>Password</td>
+    <td>:</td>
+    <td>
+        <input type="password" name="password">
+        <span id="passwordErr" class="error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td>Confirm Password</td>
+    <td>:</td>
+    <td>
+        <input type="password" name="confirm">
+        <span id="confirmErr" class="error"></span>
+    </td>
+</tr>
+
+<tr>
+    <td></td>
+    <td></td>
+    <td>
+        <input type="submit" value="Register">
+    </td>
+</tr>
+
+</table>
+</fieldset>
+
+</td>
+
+</tr>
+</table>
+
+</form>
+
+<script>
+
+function clearErrors()
+{
+    let errors = document.getElementsByClassName("error");
+
+    for(let i=0;i<errors.length;i++)
+    {
+        errors[i].innerHTML="";
+    }
+}
+
+function validate(x)
+{
+    clearErrors();
+
+    if(x.fname.value.trim()=="")
+    {
+        document.getElementById("fnameErr").innerHTML=" First Name is required";
+        x.fname.focus();
+        return false;
+    }
+
+    if(x.lname.value.trim()=="")
+    {
+        document.getElementById("lnameErr").innerHTML=" Last Name is required";
+        x.lname.focus();
+        return false;
+    }
+
+    if(!x.gender[0].checked && !x.gender[1].checked)
+    {
+        document.getElementById("genderErr").innerHTML=" Select Gender";
+        return false;
+    }
+
+    if(x.father.value.trim()=="")
+    {
+        document.getElementById("fatherErr").innerHTML=" Father's Name is required";
+        x.father.focus();
+        return false;
+    }
+
+    if(x.mother.value.trim()=="")
+    {
+        document.getElementById("motherErr").innerHTML=" Mother's Name is required";
+        x.mother.focus();
+        return false;
+    }
+
+    if(x.blood.selectedIndex==0)
+    {
+        document.getElementById("bloodErr").innerHTML=" Select Blood Group";
+        return false;
+    }
+
+    if(x.religion.selectedIndex==0)
+    {
+        document.getElementById("religionErr").innerHTML=" Select Religion";
+        return false;
+    }
+
+    if(x.email.value.trim()=="")
+    {
+        document.getElementById("emailErr").innerHTML=" Email is required";
+        x.email.focus();
+        return false;
+    }
+
+    if(x.phone.value.trim()=="")
+    {
+        document.getElementById("phoneErr").innerHTML=" Phone Number is required";
+        x.phone.focus();
+        return false;
+    }
+
+    if(x.website.value.trim()=="")
+    {
+        document.getElementById("websiteErr").innerHTML=" Website is required";
+        x.website.focus();
+        return false;
+    }
+
+    if(x.country.selectedIndex==0)
+    {
+        document.getElementById("countryErr").innerHTML=" Select Country";
+        return false;
+    }
+
+    if(x.city.selectedIndex==0)
+    {
+        document.getElementById("cityErr").innerHTML=" Select City";
+        return false;
+    }
+
+    if(x.address.value.trim()=="")
+    {
+        document.getElementById("addressErr").innerHTML=" Address is required";
+        x.address.focus();
+        return false;
+    }
+
+    if(x.postcode.value.trim()=="")
+    {
+        document.getElementById("postcodeErr").innerHTML=" Post Code is required";
+        x.postcode.focus();
+        return false;
+    }
+
+    if(x.username.value.trim()=="")
+    {
+        document.getElementById("usernameErr").innerHTML=" Username is required";
+        x.username.focus();
+        return false;
+    }
+
+    if(x.password.value=="")
+    {
+        document.getElementById("passwordErr").innerHTML=" Password is required";
+        x.password.focus();
+        return false;
+    }
+
+    let pass=x.password.value;
+
+    if(!/[a-z]/.test(pass))
+    {
+        document.getElementById("passwordErr").innerHTML=" Must contain lowercase letter";
+        return false;
+    }
+
+    if(!/[A-Z]/.test(pass))
+    {
+        document.getElementById("passwordErr").innerHTML=" Must contain uppercase letter";
+        return false;
+    }
+
+    if(!/[0-9]/.test(pass))
+    {
+        document.getElementById("passwordErr").innerHTML=" Must contain number";
+        return false;
+    }
+
+    if(!/[^A-Za-z0-9]/.test(pass))
+    {
+        document.getElementById("passwordErr").innerHTML=" Must contain special character";
+        return false;
+    }
+
+    if(x.confirm.value=="")
+    {
+        document.getElementById("confirmErr").innerHTML=" Confirm Password is required";
+        return false;
+    }
+
+    if(x.password.value!=x.confirm.value)
+    {
+        document.getElementById("confirmErr").innerHTML=" Passwords do not match";
+        return false;
+    }
+
+    alert("Registration Successful");
+    return true;
+}
+
+</script>
+
+</body>
+</html>
